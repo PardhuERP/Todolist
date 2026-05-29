@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>TaskFlow Premium</title>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+</head>
+
+<body>
+
+  <!-- Floating Background -->
+  <div class="background-glow"></div>
+
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <h1>TaskFlow Premium</h1>
+    <p>Crush your goals ⚡</p>
+  </div>
+
+  <!-- Main App -->
+  <div class="app-container">
+
+    <!-- Header -->
+    <header>
+
+      <div>
+        <h2>Hello 👋</h2>
+        <p>Your productivity dashboard</p>
+      </div>
+
+      <button id="themeToggle">
+        🌙
+      </button>
+
+    </header>
+
+    <!-- Progress Card -->
+    <section class="progress-card glass">
+
+      <div class="progress-circle">
+
+        <svg width="140" height="140">
+
+          <circle
+            cx="70"
+            cy="70"
+            r="60"
+            class="bg"
+          ></circle>
+
+          <circle
+            cx="70"
+            cy="70"
+            r="60"
+            class="progress"
+            id="progressRing"
+          ></circle>
+
+        </svg>
+
+        <div class="progress-text">
+          <h2 id="progressPercent">0%</h2>
+          <p>Completed</p>
+        </div>
+
+      </div>
+
+      <div class="motivation">
+        Awesome! Start your journey 🔥
+      </div>
+
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+
+      <div class="stat-card glass">
+        <h3 id="totalTasks">0</h3>
+        <p>Total Tasks</p>
+      </div>
+
+      <div class="stat-card glass">
+        <h3 id="completedTasks">0</h3>
+        <p>Completed</p>
+      </div>
+
+      <div class="stat-card glass">
+        <h3 id="pendingTasks">0</h3>
+        <p>Pending</p>
+      </div>
+
+    </section>
+
+    <!-- Search -->
+    <div class="search-box glass">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search tasks..."
+      />
+
+    </div>
+
+    <!-- Task List -->
+    <section id="taskList">
+
+      <!-- Tasks dynamically added -->
+
+    </section>
+
+    <!-- Floating Add Button -->
+    <button id="addTaskBtn">
+      +
+    </button>
+
+  </div>
+
+  <!-- Add Task Modal -->
+  <div id="taskModal">
+
+    <div class="modal-content glass">
+
+      <h2>Add Task</h2>
+
+      <input
+        type="text"
+        id="taskTitle"
+        placeholder="Task title"
+      />
+
+      <textarea
+        id="taskDescription"
+        placeholder="Description"
+      ></textarea>
+
+      <input
+        type="date"
+        id="taskDate"
+      />
+
+      <select id="taskPriority">
+
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+
+      </select>
+
+      <input
+        type="text"
+        id="taskCategory"
+        placeholder="Category"
+      />
+
+      <button id="saveTask">
+        Save Task
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
