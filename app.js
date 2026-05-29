@@ -165,27 +165,29 @@ function renderTasks(filteredTasks = tasks){
 
       </div>
 
-      <div
-        style="
-          margin-top:15px;
-          display:flex;
-          gap:10px;
-        "
-      >
+      <div class="task-actions">
 
-        <button onclick="toggleTask(${task.id})">
-          ${
-            task.completed
-              ? "Undo"
-              : "Complete"
-          }
-        </button>
+  <button
+    class="complete-btn"
+    onclick="toggleTask(${task.id})"
+  >
 
-        <button onclick="deleteTask(${task.id})">
-          Delete
-        </button>
+    ${
+      task.completed
+        ? "Undo"
+        : "Complete"
+    }
 
-      </div>
+  </button>
+
+  <button
+    class="delete-btn"
+    onclick="deleteTask(${task.id})"
+  >
+    Delete
+  </button>
+
+</div>
 
     `;
 
@@ -373,28 +375,55 @@ searchInput.addEventListener("input", () => {
 
 function showCelebration(){
 
-  const celebration =
+  // Heart Burst
+  const heart =
     document.createElement("div");
 
-  celebration.innerHTML = "🎉⚡💖";
+  heart.classList.add("heart");
 
-  celebration.style.position = "fixed";
-  celebration.style.top = "50%";
-  celebration.style.left = "50%";
-  celebration.style.transform =
-    "translate(-50%,-50%)";
-  celebration.style.fontSize = "3rem";
-  celebration.style.zIndex = "99999";
+  heart.innerHTML = "💖";
 
-  document.body.appendChild(
-    celebration
-  );
+  heart.style.left =
+    Math.random() * 80 + "%";
+
+  heart.style.top =
+    Math.random() * 80 + "%";
+
+  document.body.appendChild(heart);
 
   setTimeout(() => {
 
-    celebration.remove();
+    heart.remove();
 
-  }, 1200);
+  },1000);
+
+  // Confetti
+  for(let i=0; i<40; i++){
+
+    const confetti =
+      document.createElement("div");
+
+    confetti.classList.add("confetti");
+
+    confetti.style.left =
+      Math.random() * 100 + "vw";
+
+    confetti.style.background =
+      `hsl(${Math.random()*360},
+      100%,50%)`;
+
+    confetti.style.animationDuration =
+      Math.random() * 2 + 1 + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+
+      confetti.remove();
+
+    },3000);
+
+  }
 
 }
 
@@ -416,3 +445,36 @@ themeToggle.addEventListener("click", () => {
 // ===============================
 
 renderTasks();
+
+
+// ===============================
+// FLOATING PARTICLES
+// ===============================
+
+function createParticles(){
+
+  for(let i=0; i<20; i++){
+
+    const particle =
+      document.createElement("div");
+
+    particle.classList.add("particle");
+
+    particle.style.left =
+      Math.random() * 100 + "vw";
+
+    particle.style.animationDuration =
+      Math.random() * 10 + 10 + "s";
+
+    particle.style.opacity =
+      Math.random();
+
+    document.body.appendChild(
+      particle
+    );
+
+  }
+
+}
+
+createParticles();
