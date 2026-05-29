@@ -464,3 +464,182 @@ header p{
   background:#00f5ff;
   border-radius:20px;
 }
+
+/* =========================
+   TASK ACTION BUTTONS
+========================= */
+
+.task-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.complete-btn,
+.delete-btn{
+
+  flex:1;
+
+  border:none;
+
+  padding:12px;
+
+  border-radius:14px;
+
+  color:white;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.complete-btn{
+
+  background:linear-gradient(
+    135deg,
+    #00f5ff,
+    #7a5cff
+  );
+
+  box-shadow:
+    0 0 15px rgba(0,245,255,0.3);
+
+}
+
+.delete-btn{
+
+  background:linear-gradient(
+    135deg,
+    #ff3366,
+    #ff6b6b
+  );
+
+}
+
+.complete-btn:hover,
+.delete-btn:hover{
+
+  transform:translateY(-2px) scale(1.02);
+
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti{
+
+  position:fixed;
+
+  width:10px;
+  height:10px;
+
+  background:#00f5ff;
+
+  top:-10px;
+
+  z-index:99999;
+
+  animation:fall 2s linear forwards;
+
+}
+
+@keyframes fall{
+
+  to{
+
+    transform:
+      translateY(100vh)
+      rotate(720deg);
+
+    opacity:0;
+
+  }
+
+}
+
+/* =========================
+   HEART BURST
+========================= */
+
+.heart{
+
+  position:fixed;
+
+  color:#ff3366;
+
+  font-size:2rem;
+
+  animation:heartPop 1s ease forwards;
+
+  z-index:99999;
+
+}
+
+@keyframes heartPop{
+
+  0%{
+
+    transform:scale(0.5);
+    opacity:0;
+
+  }
+
+  50%{
+
+    transform:scale(1.4);
+    opacity:1;
+
+  }
+
+  100%{
+
+    transform:
+      translateY(-100px)
+      scale(0.8);
+
+    opacity:0;
+
+  }
+
+}
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+.particle{
+
+  position:fixed;
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
+
+  background:#00f5ff;
+
+  opacity:0.5;
+
+  animation:particleFloat linear infinite;
+
+}
+
+@keyframes particleFloat{
+
+  from{
+
+    transform:translateY(100vh);
+
+  }
+
+  to{
+
+    transform:translateY(-100vh);
+
+  }
+
+}
