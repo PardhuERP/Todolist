@@ -23,6 +23,14 @@ const taskList = document.getElementById("taskList");
 const totalTasks = document.getElementById("totalTasks");
 const completedTasks = document.getElementById("completedTasks");
 const pendingTasks = document.getElementById("pendingTasks");
+const dailyStreak =
+document.getElementById("dailyStreak");
+
+const productivityScore =
+document.getElementById("productivityScore");
+
+const successSound =
+document.getElementById("successSound");
 
 const progressPercent =
   document.getElementById("progressPercent");
@@ -219,9 +227,15 @@ function toggleTask(id){
       // Celebration
       if(task.completed){
 
-        showCelebration();
+  showCelebration();
 
-      }
+  updateStreak();
+
+  // Play sound
+  successSound.currentTime = 0;
+  successSound.play();
+
+}
 
     }
 
@@ -272,6 +286,17 @@ function updateDashboard(){
   completedTasks.innerText = completed;
 
   pendingTasks.innerText = pending;
+
+  // Productivity Score
+const productivity =
+  total === 0
+    ? 0
+    : Math.round(
+        (completed / total) * 100
+      );
+
+productivityScore.innerText =
+  productivity + "%";
 
   // Progress
   const percent =
@@ -478,3 +503,87 @@ function createParticles(){
 }
 
 createParticles();
+
+
+// ===============================
+// DAILY STREAK SYSTEM
+// ===============================
+
+function updateStreak(){
+
+  const today =
+    new Date().toDateString();
+
+  let streakData =
+    JSON.parse(
+      localStorage.getItem("streakData")
+    ) || {
+
+      streak:0,
+      lastCompleted:""
+
+    };
+
+  // Same day already counted
+  if(streakData.lastCompleted === today){
+
+    return;
+
+  }
+
+  const yesterday =
+    new Date();
+
+  yesterday.setDate(
+    yesterday.getDate() - 1
+  );
+
+  // Continue streak
+  if(
+    streakData.lastCompleted ===
+    yesterday.toDateString()
+  ){
+
+    streakData.streak++;
+
+  }
+
+  else{
+
+    streakData.streak = 1;
+
+  }
+
+  streakData.lastCompleted = today;
+
+  localStorage.setItem(
+    "streakData",
+    JSON.stringify(streakData)
+  );
+
+  dailyStreak.innerText =
+    streakData.streak;
+
+}
+
+// ===============================
+// LOAD STREAK
+// ===============================
+
+function loadStreak(){
+
+  let streakData =
+    JSON.parse(
+      localStorage.getItem("streakData")
+    ) || {
+
+      streak:0
+
+    };
+
+  dailyStreak.innerText =
+    streakData.streak;
+
+}
+
+loadStreak();
