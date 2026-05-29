@@ -254,8 +254,6 @@ card.addEventListener(
       );
 
     }
-
-  }
 );
 
 card.addEventListener(
