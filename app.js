@@ -200,6 +200,98 @@ function renderTasks(filteredTasks = tasks){
     `;
 
     taskList.appendChild(card);
+    // ===============================
+// SWIPE GESTURES
+// ===============================
+
+let startX = 0;
+
+card.addEventListener(
+  "touchstart",
+  e => {
+
+    startX =
+      e.touches[0].clientX;
+
+  }
+);
+
+card.addEventListener(
+  "touchmove",
+  e => {
+
+    const currentX =
+      e.touches[0].clientX;
+
+    const diff =
+      currentX - startX;
+
+    card.style.transform =
+      `translateX(${diff}px)`;
+
+    // Right swipe
+    if(diff > 0){
+
+      card.classList.add(
+        "swiping-right"
+      );
+
+      card.classList.remove(
+        "swiping-left"
+      );
+
+    }
+
+    // Left swipe
+    else{
+
+      card.classList.add(
+        "swiping-left"
+      );
+
+      card.classList.remove(
+        "swiping-right"
+      );
+
+    }
+
+  }
+);
+
+card.addEventListener(
+  "touchend",
+  e => {
+
+    const endX =
+      e.changedTouches[0].clientX;
+
+    const diff =
+      endX - startX;
+
+    // Swipe Right = Complete
+    if(diff > 120){
+
+      toggleTask(task.id);
+
+    }
+
+    // Swipe Left = Delete
+    else if(diff < -120){
+
+      deleteTask(task.id);
+
+    }
+
+    // Reset card
+    card.style.transform =
+      "translateX(0)";
+
+    card.classList.remove(
+      "swiping-right",
+      "swiping-left"
+    );
+
+  }
 
   });
 
