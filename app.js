@@ -290,8 +290,7 @@ card.addEventListener(
     );
 
   }
-
-  });
+);
 
   updateDashboard();
 
