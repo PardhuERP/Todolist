@@ -204,6 +204,10 @@ function renderTasks(filteredTasks = tasks){
 // SWIPE GESTURES
 // ===============================
 
+// ===============================
+// SWIPE GESTURES
+// ===============================
+
 let startX = 0;
 
 card.addEventListener(
@@ -254,6 +258,8 @@ card.addEventListener(
       );
 
     }
+
+  }
 );
 
 card.addEventListener(
@@ -280,7 +286,7 @@ card.addEventListener(
 
     }
 
-    // Reset card
+    // Reset Card
     card.style.transform =
       "translateX(0)";
 
