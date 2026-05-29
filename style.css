@@ -1,0 +1,466 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#070b17;
+  color:white;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+.background-glow{
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:radial-gradient(
+    circle,
+    rgba(0,255,255,0.15),
+    transparent 70%
+  );
+  top:-200px;
+  right:-150px;
+  z-index:-1;
+  animation:floatGlow 8s ease-in-out infinite;
+}
+
+@keyframes floatGlow{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(40px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* =========================
+   SPLASH SCREEN
+========================= */
+
+#splash-screen{
+  position:fixed;
+  inset:0;
+  background:#050816;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  animation:fadeOut 2.5s forwards;
+  animation-delay:2s;
+}
+
+#splash-screen h1{
+  font-size:2.2rem;
+  font-weight:700;
+  background:linear-gradient(
+    90deg,
+    #00f5ff,
+    #7a5cff
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+#splash-screen p{
+  margin-top:10px;
+  color:#9da5c3;
+}
+
+@keyframes fadeOut{
+
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+
+}
+
+/* =========================
+   MAIN APP
+========================= */
+
+.app-container{
+  padding:20px;
+  padding-bottom:120px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:30px;
+}
+
+header h2{
+  font-size:1.8rem;
+}
+
+header p{
+  color:#8d95b8;
+  margin-top:5px;
+}
+
+#themeToggle{
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:1.2rem;
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+}
+
+/* =========================
+   GLASS EFFECT
+========================= */
+
+.glass{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(20px);
+  border-radius:24px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   PROGRESS CARD
+========================= */
+
+.progress-card{
+  margin-top:25px;
+  padding:25px;
+  text-align:center;
+}
+
+.progress-circle{
+  position:relative;
+  width:140px;
+  height:140px;
+  margin:auto;
+}
+
+.progress-circle svg{
+  transform:rotate(-90deg);
+}
+
+.progress-circle circle{
+  fill:none;
+  stroke-width:10;
+}
+
+.progress-circle .bg{
+  stroke:rgba(255,255,255,0.08);
+}
+
+.progress-circle .progress{
+  stroke:url(#gradient);
+  stroke:#00f5ff;
+  stroke-linecap:round;
+  stroke-dasharray:377;
+  stroke-dashoffset:377;
+  transition:all 0.8s ease;
+  filter:drop-shadow(
+    0 0 10px #00f5ff
+  );
+}
+
+.progress-text{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.progress-text h2{
+  font-size:2rem;
+}
+
+.progress-text p{
+  color:#9da5c3;
+}
+
+.motivation{
+  margin-top:20px;
+  color:#00f5ff;
+  font-weight:500;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+
+.stat-card{
+  padding:18px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.stat-card:hover{
+  transform:translateY(-5px);
+}
+
+.stat-card h3{
+  font-size:1.6rem;
+  color:#00f5ff;
+}
+
+.stat-card p{
+  font-size:0.8rem;
+  color:#9da5c3;
+  margin-top:6px;
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box{
+  margin-top:25px;
+  padding:14px;
+}
+
+.search-box input{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:1rem;
+}
+
+/* =========================
+   TASK LIST
+========================= */
+
+#taskList{
+  margin-top:25px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.task-card{
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp 0.5s ease;
+}
+
+.task-card.completed{
+  opacity:0.6;
+  text-decoration:line-through;
+}
+
+.task-card h3{
+  font-size:1.1rem;
+}
+
+.task-card p{
+  color:#9da5c3;
+  margin-top:8px;
+  font-size:0.9rem;
+}
+
+.task-meta{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  font-size:0.8rem;
+}
+
+.priority{
+  padding:6px 12px;
+  border-radius:30px;
+}
+
+.high{
+  background:#ff3366;
+}
+
+.medium{
+  background:#ffaa00;
+}
+
+.low{
+  background:#00cc88;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+   FLOATING BUTTON
+========================= */
+
+#addTaskBtn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:65px;
+  height:65px;
+  border:none;
+  border-radius:50%;
+  font-size:2rem;
+  color:white;
+  cursor:pointer;
+
+  background:linear-gradient(
+    135deg,
+    #00f5ff,
+    #7a5cff
+  );
+
+  box-shadow:
+    0 0 25px rgba(0,245,255,0.5);
+
+  transition:0.3s;
+}
+
+#addTaskBtn:hover{
+  transform:scale(1.08);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+#taskModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal-content{
+  width:100%;
+  max-width:400px;
+  padding:25px;
+  animation:popup 0.3s ease;
+}
+
+@keyframes popup{
+
+  from{
+    transform:scale(0.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+
+}
+
+.modal-content h2{
+  margin-bottom:20px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select{
+  width:100%;
+  margin-bottom:15px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  outline:none;
+}
+
+.modal-content textarea{
+  resize:none;
+  height:100px;
+}
+
+.modal-content button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  font-weight:600;
+
+  background:linear-gradient(
+    135deg,
+    #00f5ff,
+    #7a5cff
+  );
+
+  color:white;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+@media(max-width:480px){
+
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#00f5ff;
+  border-radius:20px;
+}
