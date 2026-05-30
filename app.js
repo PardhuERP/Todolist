@@ -175,125 +175,107 @@ function renderTasks(filteredTasks = tasks){
 
       <div class="task-actions">
 
-  <button
-    class="complete-btn"
-    onclick="toggleTask(${task.id})"
-  >
+        <button
+          class="complete-btn"
+          onclick="toggleTask(${task.id})"
+        >
+          ${task.completed ? "Undo" : "Complete"}
+        </button>
 
-    ${
-      task.completed
-        ? "Undo"
-        : "Complete"
-    }
+        <button
+          class="delete-btn"
+          onclick="deleteTask(${task.id})"
+        >
+          Delete
+        </button>
 
-  </button>
-
-  <button
-    class="delete-btn"
-    onclick="deleteTask(${task.id})"
-  >
-    Delete
-  </button>
-
-</div>
+      </div>
 
     `;
 
+    // Add card to screen
     taskList.appendChild(card);
 
-// ===============================
-// SWIPE GESTURES
-// ===============================
+    // ==========================
+    // SWIPE GESTURES
+    // ==========================
 
-let startX = 0;
+    let startX = 0;
 
-card.addEventListener(
-  "touchstart",
-  e => {
+    card.addEventListener("touchstart", e => {
 
-    startX =
-      e.touches[0].clientX;
+      startX = e.touches[0].clientX;
 
-  }
-);
+    });
 
-card.addEventListener(
-  "touchmove",
-  e => {
+    card.addEventListener("touchmove", e => {
 
-    const currentX =
-      e.touches[0].clientX;
+      const currentX =
+        e.touches[0].clientX;
 
-    const diff =
-      currentX - startX;
+      const diff =
+        currentX - startX;
 
-    card.style.transform =
-      `translateX(${diff}px)`;
+      card.style.transform =
+        `translateX(${diff}px)`;
 
-    // Right swipe
-    if(diff > 0){
+      if(diff > 0){
 
-      card.classList.add(
-        "swiping-right"
-      );
+        card.classList.add(
+          "swiping-right"
+        );
+
+        card.classList.remove(
+          "swiping-left"
+        );
+
+      }else{
+
+        card.classList.add(
+          "swiping-left"
+        );
+
+        card.classList.remove(
+          "swiping-right"
+        );
+
+      }
+
+    });
+
+    card.addEventListener("touchend", e => {
+
+      const endX =
+        e.changedTouches[0].clientX;
+
+      const diff =
+        endX - startX;
+
+      // Swipe Right = Complete
+      if(diff > 120){
+
+        toggleTask(task.id);
+
+      }
+
+      // Swipe Left = Delete
+      else if(diff < -120){
+
+        deleteTask(task.id);
+
+      }
+
+      card.style.transform =
+        "translateX(0)";
 
       card.classList.remove(
+        "swiping-right",
         "swiping-left"
       );
 
-    }
+    });
 
-    // Left swipe
-    else{
-
-      card.classList.add(
-        "swiping-left"
-      );
-
-      card.classList.remove(
-        "swiping-right"
-      );
-
-    }
-
-  }
-);
-
-card.addEventListener(
-  "touchend",
-  e => {
-
-    const endX =
-      e.changedTouches[0].clientX;
-
-    const diff =
-      endX - startX;
-
-    // Swipe Right = Complete
-    if(diff > 120){
-
-      toggleTask(task.id);
-
-    }
-
-    // Swipe Left = Delete
-    else if(diff < -120){
-
-      deleteTask(task.id);
-
-    }
-
-    // Reset Card
-    card.style.transform =
-      "translateX(0)";
-
-    card.classList.remove(
-      "swiping-right",
-      "swiping-left"
-    );
-
-  }
-  );
+  });
 
   updateDashboard();
 
