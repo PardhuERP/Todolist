@@ -669,23 +669,35 @@ async function saveTaskToSheet(task){
 
   try{
 
-    await fetch(API_URL,{
+    const response = await fetch(
+      API_URL,
+      {
+        method:"POST",
+        body:JSON.stringify(task)
+      }
+    );
 
-      method:"POST",
+    const result =
+      await response.json();
 
-      body:JSON.stringify(task)
-
-    });
+    console.log(
+      "Saved:",
+      result
+    );
 
   }
 
   catch(error){
 
-    console.log(error);
+    console.log(
+      "Save Error:",
+      error
+    );
 
   }
 
 }
+
 
 async function loadTasksFromSheet(){
 
