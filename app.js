@@ -546,6 +546,8 @@ themeToggle.addEventListener("click", () => {
 
 renderTasks();
 
+loadTasksFromSheet();
+
 
 // ===============================
 // FLOATING PARTICLES
