@@ -200,9 +200,6 @@ function renderTasks(filteredTasks = tasks){
     `;
 
     taskList.appendChild(card);
-    // ===============================
-// SWIPE GESTURES
-// ===============================
 
 // ===============================
 // SWIPE GESTURES
@@ -295,8 +292,7 @@ card.addEventListener(
       "swiping-left"
     );
 
-  }
-);
+  };
 
   updateDashboard();
 
