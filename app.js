@@ -103,6 +103,7 @@ saveTask.addEventListener("click", () => {
   };
 
   tasks.push(task);
+  saveTaskToSheet(task);
 
   saveToLocal();
 
@@ -661,3 +662,49 @@ function loadStreak(){
 }
 
 loadStreak();
+
+async function saveTaskToSheet(task){
+
+  try{
+
+    await fetch(API_URL,{
+
+      method:"POST",
+
+      body:JSON.stringify(task)
+
+    });
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+async function loadTasksFromSheet(){
+
+  try{
+
+    const response =
+      await fetch(API_URL);
+
+    const data =
+      await response.json();
+
+    console.log(data);
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+
