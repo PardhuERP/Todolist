@@ -292,7 +292,8 @@ card.addEventListener(
       "swiping-left"
     );
 
-  };
+  }
+  );
 
   updateDashboard();
 
