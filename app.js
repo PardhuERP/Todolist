@@ -547,8 +547,6 @@ themeToggle.addEventListener("click", () => {
 // INITIAL LOAD
 // ===============================
 
-renderTasks();
-
 loadTasksFromSheet();
 
 
@@ -712,16 +710,41 @@ async function loadTasksFromSheet(){
     const data =
       await response.json();
 
-    console.log(data);
+    tasks = data.map(task => ({
+
+      id:Number(task.id),
+
+      title:task.title,
+
+      description:task.description,
+
+      dueDate:task.dueDate,
+
+      priority:task.priority,
+
+      category:task.category,
+
+      completed:
+        String(task.completed)
+        .toLowerCase() === "true",
+
+      createdAt:task.createdAt
+
+    }));
+
+    saveToLocal();
+
+    renderTasks();
 
   }
 
   catch(error){
 
-    console.log(error);
+    console.log(
+      "Load Error:",
+      error
+    );
 
   }
 
 }
-
-
