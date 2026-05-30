@@ -1,0 +1,8 @@
+{
+  "name": "TaskFlow Premium",
+  "short_name": "TaskFlow",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#070b17",
+  "theme_color": "#00f5ff"
+}
